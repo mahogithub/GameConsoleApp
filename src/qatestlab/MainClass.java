@@ -34,6 +34,8 @@ public class MainClass {
         Squad unitsOfLight = initUnitsOfLight();
         Squad unitsOfDarkness = initUnitsOfDarkness();
         int currentRound = 1;
+        GameLogger.log(unitsOfLight.getSquadRace() + " against " + unitsOfDarkness.getSquadRace());
+        GameLogger.log("Let the battle begin");
         do {
             GameLogger.log("\n ******* Round " + String.valueOf(currentRound) + " *********\n");
             switch (new Random().nextInt(2)) {

@@ -1,6 +1,6 @@
-package java.com.qatestlab.ranks;
+package qatestlab.ranks;
 
-import java.com.qatestlab.units.Unit;
+import qatestlab.units.Unit;
 
 /**
  * Created by user on 07.06.2017.

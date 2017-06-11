@@ -1,7 +1,7 @@
-package java.com.qatestlab.utils;
+package qatestlab.utils;
 
-import java.com.qatestlab.units.Squad;
-import java.com.qatestlab.units.Unit;
+import qatestlab.units.Squad;
+import qatestlab.units.Unit;
 
 import java.util.ArrayList;
 import java.util.Random;

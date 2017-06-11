@@ -1,4 +1,4 @@
-package java.com.qatestlab.units;
+package qatestlab.units;
 
 /**
  * Created by user on 08.06.2017.

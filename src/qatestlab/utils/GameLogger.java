@@ -1,4 +1,4 @@
-package java.com.qatestlab.utils;
+package qatestlab.utils;
 
 import java.io.*;
 import java.util.logging.FileHandler;

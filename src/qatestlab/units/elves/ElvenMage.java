@@ -1,0 +1,89 @@
+package qatestlab.units.elves;
+
+import qatestlab.units.Race;
+import qatestlab.units.Squad;
+import qatestlab.utils.RandomHelper;
+import qatestlab.ranks.Mage;
+import qatestlab.units.Unit;
+import qatestlab.utils.GameLogger;
+
+import java.util.Random;
+
+/**
+ * Created by user on 08.06.2017.
+ * This class specifies Mage of Elven race
+ */
+public class ElvenMage extends Unit implements Mage {
+
+
+
+    public ElvenMage() {
+        primaryDamage = 10;
+        race = Race.ELF;
+        name = "Mage";
+    }
+
+    /**
+     * To set friendly unit privileged
+     * @param unitToBuff - friendly unit to buff
+     */
+    @Override
+    public void buff(Unit unitToBuff) {
+        unitToBuff.setPrivilege(true);
+        GameLogger.log(unitToBuff.getRaceAndName() + " is privileged!");
+    }
+
+    /**
+     * To attack the enemy unit
+     * @param unitToAttack - enemy unit to attack
+     */
+    @Override
+    public void attack(Unit unitToAttack) {
+        int currentDamage = giveCurrentDamage(primaryDamage);
+        unitToAttack.receiveDamage(currentDamage);
+        GameLogger.log(getRaceAndName() + " attacked " + unitToAttack.getRaceAndName() + " with magic for "
+                + String.valueOf(currentDamage) + " HP ");
+    }
+
+    /**
+     * To specify action of Elven Mage during the round
+     * @param teammates - friendly units squad
+     * @param enemies - enemy units squad
+     */
+    @Override
+    public void doAction(Squad teammates, Squad enemies) {
+        setActioned(true);
+        Unit unitToDoAction;
+        switch (new Random().nextInt(2)) {
+            case 0: {
+                unitToDoAction = RandomHelper.getRandomUnit(teammates);
+                buff(unitToDoAction);
+                if(unitToDoAction.isActioned()) {
+                    teammates.privilegeUnit(unitToDoAction);
+                }
+                else {
+                    GameLogger.log(unitToDoAction.getRaceAndName() + " is not actioned");
+                    unitToDoAction.doAction(teammates, enemies);
+                    unitToDoAction.setPrivilege(false);
+                    unitToDoAction.setActioned(true);
+                }
+                break;
+            }
+            case 1: {
+                unitToDoAction = RandomHelper.getRandomUnit(enemies);
+                attack(unitToDoAction);
+                enemies.checkKilled(unitToDoAction);
+                break;
+            }
+        }
+    }
+
+    /**
+     * To create Elven Mage
+     * @return
+     */
+    @Override
+    public Unit createUnit() {
+        return new ElvenMage();
+    }
+}

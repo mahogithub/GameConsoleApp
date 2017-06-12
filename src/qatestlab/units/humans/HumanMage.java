@@ -31,6 +31,7 @@ public class HumanMage extends Unit implements Mage {
     @Override
     public void buff(Unit unitToBuff) {
         unitToBuff.setPrivilege(true);
+        GameLogger.log(unitToBuff.getRaceAndName() + " is privileged!");
     }
 
     /**
@@ -39,7 +40,10 @@ public class HumanMage extends Unit implements Mage {
      */
     @Override
     public void attack(Unit unitToAttack) {
-        unitToAttack.receiveDamage(primaryDamage);
+        int currentDamage = giveCurrentDamage(primaryDamage);
+        unitToAttack.receiveDamage(currentDamage);
+        GameLogger.log(getRaceAndName() + " attacked " + unitToAttack.getRaceAndName() + " with magic for "
+                + String.valueOf(currentDamage) + " HP ");
     }
 
 

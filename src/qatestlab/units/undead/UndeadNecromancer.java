@@ -31,7 +31,7 @@ public class UndeadNecromancer extends Unit implements Mage {
     @Override
     public void buff(Unit unitToBuff) {
         unitToBuff.setCursed(true);
-        GameLogger.log("Necromancer buffed " + unitToBuff.getRaceAndName());
+        GameLogger.log(unitToBuff.getRaceAndName() + " is cursed");
     }
 
     /**

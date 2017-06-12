@@ -28,7 +28,7 @@ public class OrcShaman extends Unit implements Mage {
     @Override
     public void attack(Unit unitToAttack) {
         unitToAttack.setPrivilege(false);
-        GameLogger.log(unitToAttack.getRaceAndName() + " is cursed!");
+        GameLogger.log(unitToAttack.getRaceAndName() + " is unprivileged !");
     }
 
     @Override

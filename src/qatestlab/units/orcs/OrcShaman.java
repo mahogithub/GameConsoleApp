@@ -13,24 +13,39 @@ import java.util.Random;
  * Created by user on 09.06.2017.
  */
 public class OrcShaman extends Unit implements Mage {
-
+    /**
+     * To specify Orc Shaman creation logig
+     */
     public OrcShaman() {
         race = Race.ORC;
         name = "Shaman";
     }
 
+    /**
+     * To privilege friendly squad unit
+     * @param unitToBuff - friendly unit
+     */
     @Override
     public void buff(Unit unitToBuff) {
         unitToBuff.setPrivilege(true);
         GameLogger.log(unitToBuff.getRaceAndName() + " is privileged!");
     }
 
+    /**
+     * To unprivilege enemy squad unit
+     * @param unitToAttack - enemy unit to unprivilege
+     */
     @Override
     public void attack(Unit unitToAttack) {
         unitToAttack.setPrivilege(false);
         GameLogger.log(unitToAttack.getRaceAndName() + " is unprivileged !");
     }
 
+    /**
+     * To specify action of Orc Shaman during the round
+     * @param teammates - friendly units squad
+     * @param enemies - enemy units squad
+     */
     @Override
     public void doAction(Squad teammates, Squad enemies) {
         setActioned(true);
@@ -63,6 +78,10 @@ public class OrcShaman extends Unit implements Mage {
         }
     }
 
+    /**
+     * To create Orc Shaman
+     * @return Orc Shaman
+     */
     @Override
     public Unit createUnit() {
         return new OrcShaman();

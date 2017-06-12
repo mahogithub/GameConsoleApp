@@ -90,6 +90,8 @@ public class Squad {
             if(!generalUnit.isActioned())generalUnit.doAction(this, target);
         }
         GameLogger.log("Non-privileged " + squadRace + " action end");
+
+        //set newly privileged units as privileged
         units.removeAll(unitsToBePriveleged);
         privilegedUnits.clear();
         privilegedUnits.addAll(unitsToBePriveleged);
